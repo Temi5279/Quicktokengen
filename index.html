@@ -212,7 +212,7 @@
         <p>Quick Response (QR) matrices are essential for bridging printed physical setups with instant mobile URLs. Whether sharing a portfolio link, a Wi-Fi connection key, or text details, our free generator processes input phrases instantly. Just paste your destination address, strike the render switch, and scan or download the customized canvas matrix instantly from any standard mobile device camera lens.</p>
     </div>
 
-    <script>
+<script>
         // Tab Switch Logic
         function switchTab(toolId, clickTarget) {
             document.querySelectorAll('.tool-content').forEach(tool => tool.classList.remove('active'));
@@ -220,6 +220,29 @@
             
             document.getElementById(toolId).classList.add('active');
             clickTarget.classList.add('active');
+        }
+
+        // --- HELPER FUNCTION FOR COPYING ---
+        function copyToClipboard(textToCopy, buttonElement) {
+            if (!textToCopy || textToCopy.includes("will appear here...")) {
+                alert("Nothing to copy yet!");
+                return;
+            }
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = buttonElement.innerText;
+                buttonElement.innerText = "Copied! ✓";
+                buttonElement.style.backgroundColor = "#22c55e"; // Flash green
+                buttonElement.style.color = "#ffffff";
+
+                setTimeout(() => {
+                    buttonElement.innerText = originalText;
+                    buttonElement.style.backgroundColor = "#38bdf8"; // Reset back to blue
+                    buttonElement.style.color = "#0f172a";
+                }, 2000);
+            }).catch(err => {
+                alert("Failed to copy text. Please copy manually.");
+            });
         }
 
         // 1. Password Logic
@@ -230,8 +253,20 @@
             for (let i = 0; i < 16; i++) {
                 newPassword += characters.charAt(Math.floor(Math.random() * characters.length));
             }
-            outputBox.innerText = newPassword;
-            outputBox.style.color = '#38bdf8';
+            
+            // Put password in box and wrap it in a clean layout with a copy button
+            outputBox.innerHTML = `
+                <span id="actual-pass" style="font-weight: bold; color: #38bdf8;">${newPassword}</span>
+                <button id="pass-copy-btn" onclick="copyPassword()" style="margin-top: 10px; background-color: #38bdf8; color: #0f172a; padding: 6px 12px; border: none; font-size: 0.85rem; font-weight: bold; border-radius: 4px; cursor: pointer; width: auto; float: right;">Copy</button>
+                <div style="clear:both;"></div>
+            `;
+            outputBox.style.borderStyle = 'solid';
+        }
+
+        function copyPassword() {
+            const passText = document.getElementById('actual-pass').innerText;
+            const btn = document.getElementById('pass-copy-btn');
+            copyToClipboard(passText, btn);
         }
 
         // 2. QR Code Generator Logic
@@ -244,7 +279,6 @@
                 return;
             }
             
-            // Calling a blazing-fast secure open QR code render engine
             const encodedData = encodeURIComponent(inputData);
             qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedData}`;
             qrImg.style.display = 'block';
@@ -261,7 +295,6 @@
                 return;
             }
 
-            // Limit it to 1000 repetitions max to avoid freezing older mobile browsers
             const displayLimit = Math.min(count, 1000);
             let result = "";
             for(let i = 0; i < displayLimit; i++) {
@@ -270,7 +303,29 @@
             
             textOutput.value = result.trim();
             textOutput.style.display = 'block';
+
+            // Check if copy button already exists so we don't duplicate it
+            if (!document.getElementById('repeater-copy-btn')) {
+                const copyBtn = document.createElement('button');
+                copyBtn.id = 'repeater-copy-btn';
+                copyBtn.innerText = 'Copy Repeated Text';
+                copyBtn.className = 'action-btn';
+                copyBtn.style.marginTop = '10px';
+                copyBtn.style.backgroundColor = '#38bdf8';
+                
+                copyBtn.onclick = function() {
+                    copyToClipboard(textOutput.value, copyBtn);
+                };
+                
+                textOutput.parentNode.appendChild(copyBtn);
+            } else {
+                // If it exists, reset it to standard state for the new text run
+                const copyBtn = document.getElementById('repeater-copy-btn');
+                copyBtn.innerText = 'Copy Repeated Text';
+                copyBtn.style.backgroundColor = '#38bdf8';
+                copyBtn.style.color = '#0f172a';
+            }
         }
-    </script>
+</script>
 </body>
             </html>
