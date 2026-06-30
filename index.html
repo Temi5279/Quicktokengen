@@ -78,5 +78,35 @@
         <button>Generate Password</button>
     </div>
 
+    <script>
+        // 1. Grab the elements from our HTML page
+        const outputBox = document.getElementById('output-box');
+        const generateBtn = document.querySelector('button');
+
+        // 2. Create the function that generates a strong password
+        function generatePassword() {
+            // The exact characters our pool will pick from
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
+            let newPassword = '';
+            const passwordLength = 16; // Standard secure length
+
+            // Loop 16 times to pick 16 random characters
+            for (let i = 0; i < passwordLength; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                newPassword += characters.charAt(randomIndex);
+            }
+
+            // 3. Put the newly made password inside our display box
+            outputBox.innerText = newPassword;
+            
+            // Change text color to bright blue so the user knows it changed!
+            outputBox.style.color = '#38bdf8'; 
+            outputBox.style.borderStyle = 'solid';
+        }
+
+        // 4. Tell the button to run this function every time it gets clicked
+        generateBtn.addEventListener('click', generatePassword);
+    </script>
+    
 </body>
   </html>
