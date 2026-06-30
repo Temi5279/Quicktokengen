@@ -11,7 +11,7 @@
         *, *::before, *::after { box-sizing: border-box; }
         
         body {
-            background-color: #0f172a; /* Deep, sophisticated blue/black */
+            background-color: #0f172a;
             color: #f8fafc;
             font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
@@ -20,57 +20,49 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            scroll-behavior: smooth;
         }
 
         .container {
-            background-color: #1e293b; /* Darker Slate Card */
+            background-color: #1e293b;
             padding: 30px;
             border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
             width: 100%;
             max-width: 550px;
             text-align: center;
             margin-bottom: 40px;
-            border: 1px solid #334155; /* Subtle border for definition */
+            border: 1px solid #334155;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin-top: 0;
-            margin-bottom: 30px;
-            color: #38bdf8; /* Cyber Blue Primary Color */
+            margin-bottom: 25px;
+            color: #38bdf8;
             font-weight: 800;
-            letter-spacing: -1px;
         }
 
-        /* Modern Tab Navigation */
+        /* Tab Navigation */
         .tabs {
             display: flex;
             justify-content: space-between;
             background-color: #0f172a;
-            padding: 8px;
+            padding: 6px;
             border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
         }
 
         .tab-btn {
             background: none;
             border: none;
             color: #94a3b8;
-            padding: 12px 20px;
-            font-size: 1rem;
+            padding: 12px 10px;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
             border-radius: 10px;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             width: 32%;
-            white-space: nowrap;
-        }
-
-        .tab-btn:hover {
-            color: #e2e8f0;
         }
 
         .tab-btn.active {
@@ -78,58 +70,51 @@
             color: #0f172a;
         }
 
-        /* Toolkit Content Windows */
+        /* Content Visibility */
         .tool-content {
             display: none;
-            animation: fadeIn 0.3s ease;
         }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
         .tool-content.active {
             display: block;
         }
 
-        /* Main Output Box (Shared) */
+        /* Shared Output Box */
         .box {
             background-color: #0f172a;
-            padding: 15px 20px;
+            padding: 15px;
             border-radius: 8px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 1.15rem;
             color: #cbd5e1;
             border: 1px solid #334155;
             word-break: break-all;
             min-height: 48px;
-            position: relative;
-            font-family: 'Courier New', Courier, monospace; /* Monospace for outputs */
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Input Controls */
-        input[type="text"], input[type="number"], textarea, select {
+        /* Inputs */
+        input[type="text"], input[type="number"], textarea {
             width: 100%;
             background-color: #0f172a;
             border: 1px solid #334155;
             color: #f8fafc;
-            padding: 14px 18px;
+            padding: 14px;
             border-radius: 8px;
-            font-size: 1.05rem;
+            font-size: 1rem;
             margin-bottom: 18px;
             font-family: inherit;
-            transition: border-color 0.2s;
         }
 
-        input:focus, textarea:focus, select:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: #38bdf8;
-            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
         }
 
         textarea {
             resize: vertical;
         }
 
-        /* Flex Row Utilities */
         .row {
             display: flex;
             gap: 15px;
@@ -137,68 +122,52 @@
             align-items: center;
             margin-bottom: 18px;
         }
-        
-        .col-flex { display: flex; flex-direction: column; align-items: flex-start; }
 
         label {
             font-size: 0.9rem;
             color: #94a3b8;
-            margin-bottom: 8px;
             font-weight: 600;
+            display: block;
+            text-align: left;
+            margin-bottom: 6px;
         }
 
-        /* Action Buttons */
+        /* Buttons */
         .action-btn {
             background-color: #38bdf8;
             color: #0f172a;
             border: none;
             padding: 15px 24px;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
             transition: all 0.2s;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
             margin-bottom: 10px;
         }
 
         .action-btn:hover {
             background-color: #7dd3fc;
-            transform: translateY(-1px);
         }
 
-        .action-btn:active {
-            transform: translateY(1px);
-        }
-
-        /* Secondary Copy/Action Buttons (Smaller) */
         .copy-btn {
-            background-color: #334155; /* Neutral Dark Slate */
+            background-color: #334155;
             color: #e2e8f0;
             border: none;
-            padding: 10px 16px;
-            font-size: 0.9rem;
+            padding: 8px 14px;
+            font-size: 0.85rem;
             font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .copy-btn:hover {
-            background-color: #475569;
-        }
-
-        /* Dynamic Visual Indicators */
-        /* 1. Strength Meter */
-        #password-meta { display: flex; justify-content: space-between; align-items: center; }
-        #strength-meter { font-size: 1rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; }
-        #strength-bar { width: 100px; height: 10px; border-radius: 5px; background-color: #334155; position: relative; }
-        #strength-fill { width: 0%; height: 100%; border-radius: 5px; transition: width 0.3s, background-color 0.3s; }
-        
-        /* 2. Crack Time */
-        #crack-time { font-size: 0.9rem; color: #cbd5e1; font-weight: 500; font-family: inherit; }
+        /* Indicators */
+        #password-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        #strength-meter { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; }
+        #strength-bar { width: 100px; height: 8px; border-radius: 4px; background-color: #334155; position: relative; }
+        #strength-fill { width: 0%; height: 100%; border-radius: 4px; transition: width 0.3s; }
 
         /* QR Canvas Area */
         #qr-display-area { text-align: center; margin-top: 20px; }
@@ -207,14 +176,8 @@
             background-color: white;
             padding: 15px;
             border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
             margin: 0 auto 20px auto;
         }
-        
-        /* Formatting Toggles (Checkbox Styles) */
-        .toggle-switch { display: flex; align-items: center; gap: 10px; }
-        .toggle-input { width: 20px; height: 20px; accent-color: #38bdf8; }
-        .toggle-label { font-size: 1rem; color: #f8fafc; cursor: pointer; }
 
         /* SEO Informational Footer Article */
         .seo-section {
@@ -227,173 +190,121 @@
             color: #94a3b8;
         }
 
-        .seo-section h2 { color: #38bdf8; font-size: 1.5rem; margin-top: 30px; font-weight: 700; letter-spacing: -0.5px;}
-        .seo-section h3 { color: #e2e8f0; font-size: 1.1rem; margin-top: 20px; font-weight: 600; }
-        .seo-section p { font-size: 1rem; margin-bottom: 15px; }
-        .seo-section ul { padding-left: 20px; margin-bottom: 15px; }
-        .seo-section li { margin-bottom: 8px; }
-
-        /* Placeholder styles before text generation */
-        .placeholder {
-            font-style: italic;
-            color: #64748b;
-            user-select: none;
-        }
+        .seo-section h2 { color: #38bdf8; font-size: 1.4rem; margin-top: 30px; }
+        .seo-section p { font-size: 0.95rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- Modern Navigation Tabs -->
         <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('password-tool', this)">Password</button>
-            <button class="tab-btn" onclick="switchTab('qr-tool', this)">QR Code</button>
-            <button class="tab-btn" onclick="switchTab('repeater-tool', this)">Repeater</button>
+            <button class="tab-btn active" id="btn-pass" onclick="switchTab('password-tool', 'btn-pass')">Password</button>
+            <button class="tab-btn" id="btn-qr" onclick="switchTab('qr-tool', 'btn-qr')">QR Code</button>
+            <button class="tab-btn" id="btn-repeat" onclick="switchTab('repeater-tool', 'btn-repeat')">Repeater</button>
         </div>
 
-        <!-- TOOL 1: PASSWORD GENERATOR with STRENGTH/CRACK ESTIMATOR -->
         <div id="password-tool" class="tool-content active">
-            <h1>Secure Password & Token Generator</h1>
+            <h1>Secure Password Generator</h1>
             
-            <label>Length:</label>
+            <label>Password Length:</label>
             <input type="number" id="password-length" min="6" max="100" value="16">
             
             <button class="action-btn" onclick="generatePassword()">Generate Password</button>
 
-            <!-- Password Output Area (Dynamic Layout) -->
-            <div id="password-wrapper" class="tool-result-area" style="display: none; margin-top: 20px; text-align: left;">
-                <div id="password-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <div id="strength-container" style="display:flex; align-items:center; gap: 8px;">
+            <div id="password-wrapper" style="display: none; margin-top: 20px; text-align: left;">
+                <div id="password-meta">
+                    <div style="display:flex; align-items:center; gap: 8px;">
                         <span id="strength-meter">Weak</span>
                         <div id="strength-bar"><div id="strength-fill"></div></div>
                     </div>
-                    <button class="copy-btn" id="pass-copy-btn" onclick="copyResult('actual-pass', this)">Copy</button>
+                    <button class="copy-btn" id="pass-copy-btn" onclick="copyPasswordText()">Copy</button>
                 </div>
                 <div class="box">
                     <span id="actual-pass"></span>
                 </div>
-                <div style="text-align: right; color: #94a3b8; font-size: 0.9rem;">Crack Time: <strong id="crack-time" style="color:#e2e8f0;">0 seconds</strong></div>
+                <div style="text-align: right; color: #94a3b8; font-size: 0.85rem;">Crack Time: <strong id="crack-time" style="color:#e2e8f0;">0 seconds</strong></div>
             </div>
             
-            <div id="pass-placeholder" class="placeholder" style="margin-top: 20px;">Your secure password will appear here...</div>
+            <div id="pass-placeholder" style="color: #64748b; font-style: italic; margin-top: 20px;">Your secure password will appear here...</div>
         </div>
 
-        <!-- TOOL 2: QR CODE GENERATOR with FREE DOWNLOAD -->
         <div id="qr-tool" class="tool-content">
             <h1>Free Online QR Code Generator</h1>
-            <input type="text" id="qr-input" placeholder="Type text or paste URL (e.g., https://...)">
+            <input type="text" id="qr-input" placeholder="Type text or paste URL here...">
             <button class="action-btn" onclick="generateQRCode()">Create QR Code</button>
             
-            <!-- Result Area with Dynamic Canvas & Download Button -->
             <div id="qr-display-area">
                 <canvas id="qr-canvas"></canvas>
-                <div id="qr-actions" style="display:none; text-align:center;">
-                    <button class="copy-btn" style="background-color:#22c55e;" onclick="downloadQR()">Download QR (PNG)</button>
+                <div id="qr-actions" style="display:none;">
+                    <button class="copy-btn" style="background-color:#22c55e; color: white; padding: 10px 20px;" onclick="downloadQR()">Download QR (PNG)</button>
                 </div>
             </div>
             
-            <div id="qr-placeholder" class="placeholder" style="margin-top: 15px;">Your dynamic QR code will render here...</div>
+            <div id="qr-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your dynamic QR code will render here...</div>
         </div>
 
-        <!-- TOOL 3: TEXT REPEATER with LINE-BREAK FORMATTING -->
         <div id="repeater-tool" class="tool-content">
             <h1>Fast Text & Spam Repeater Tool</h1>
             <textarea id="repeat-input" rows="3" placeholder="Enter text to repeat..."></textarea>
             
             <div class="row">
-                <div class="col-flex" style="width: 48%;">
+                <div style="width: 48%;">
                     <label>Repeats:</label>
-                    <input type="number" id="repeat-count" placeholder="Num." min="1" max="5000" value="10">
+                    <input type="number" id="repeat-count" min="1" max="5000" value="10">
                 </div>
-                <div class="toggle-switch" style="width: 48%; margin-top: 25px;">
-                    <input type="checkbox" id="add-newline" class="toggle-input">
-                    <label for="add-newline" class="toggle-label">Add Line Break</label>
+                <div style="width: 48%; display: flex; align-items: center; gap: 8px; margin-top: 20px;">
+                    <input type="checkbox" id="add-newline" style="width:18px; height:18px; accent-color:#38bdf8;">
+                    <label for="add-newline" style="margin-bottom:0; cursor:pointer; color: #f8fafc;">Add Line Break</label>
                 </div>
             </div>
             
             <button class="action-btn" onclick="repeatText()">Repeat Text</button>
             
-            <!-- Output Area -->
             <div id="repeater-result-wrapper" style="display:none; margin-top: 20px; text-align: left;">
                 <div style="text-align: right; margin-bottom: 10px;">
-                    <button class="copy-btn" onclick="copyResult('repeater-output', this)">Copy Repeated Text</button>
+                    <button class="copy-btn" id="repeat-copy-btn" onclick="copyRepeaterText()">Copy Repeated Text</button>
                 </div>
-                <textarea id="repeater-output" rows="8" readonly></textarea>
+                <textarea id="repeater-output" rows="6" readonly></textarea>
             </div>
             
-            <div id="repeater-placeholder" class="placeholder" style="margin-top: 15px;">Your repeated text output will appear here...</div>
+            <div id="repeater-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your repeated text output will appear here...</div>
         </div>
     </div>
 
-    <!-- SEO ARTICLE SECTION: This brings Google search traffic to your utility hub -->
     <div class="seo-section">
         <h2>Unlock Free, Secure Web Utilities with QuickTokenGen</h2>
         <p>Welcome to QuickTokenGen, your fast, unified online hub for lightweight developer and productivity tools. Modern digital tasks require efficiency without sacrificing security or privacy. We've built an interconnected suite that executes complex functions directly in your browser. No downloads, no account setup, and 100% free.</p>
 
         <h2>Professional Password Generation with Smart Strength Analysis</h2>
-        <h3>What Sets Our Password Generator Apart?</h3>
-        <p>Built-in password managers are rigid. QuickTokenGen offers a high-performance cryptographic script that allows you to specify length and complex character requirements. But we don't just generate a string; we provide live validation. Our advanced algorithm instantly analyzes entropy to provide a <strong>visual strength rating</strong> (Weak to Strong) and a <strong>calculated crack time estimate</strong>.</p>
-        <ul>
-            <li>Secure localized execution means your raw credentials are never sent over the network.</li>
-            <li>Perfect for developers needing secure API keys, database encryption salts, or throwaway session tokens.</li>
-            <li>Use the one-click copy button for streamlined, frustration-free integration.</li>
-        </ul>
+        <p>Our advanced algorithm instantly analyzes entropy to provide a visual strength rating (Weak to Strong) and a calculated crack time estimate. Secure localized execution means your raw credentials are never sent over the network.</p>
 
-        <h2>Free, Dynamic QR Code Creator with Instand Downloads</h2>
-        <h3>Generate Unrestricted QR Codes in Seconds</h3>
-        <p>Bridging physical interfaces with digital destinations has never been easier. QuickTokenGen's QR Code utility renders clean, accurate 2D matrix matrices instantly from any text or URL. Unlike competitor websites that lock downloads behind paywalls or require email registration, we provide a completely unrestricted <strong>Download Image button</strong>. Perfect for marketing materials, connecting to Wi-Fi networks, sharing contact details, or generating physical URL links.</p>
-
-        <h2>Advanced Text Repeater and String Formatter</h2>
-        <h3>Customize Repetitive Strings Fast</h3>
-        <p>Whether you need filler text for coding projects, stress-testing application inputs, or formatting repetitive messages for chat platforms, our Text Repeater tool handles the heavy lifting. We allow up to 5,000 repetitions max. We set ourselves apart by offering an <strong>'Add Line Break' formatting toggle</strong>, instantly turning a standard data dump into cleanly structured, copy-pasteable data suited for any interface.</p>
+        <h2>Free, Dynamic QR Code Creator with Instant Downloads</h2>
+        <p>QuickResponse (QR) matrices are essential for bridging physical setups with instant mobile URLs. Paste your destination address, strike the render switch, and scan or download the customized canvas matrix instantly from any standard mobile device camera lens.</p>
     </div>
 
-    <!-- The Logic - JavaScript upgrades injected here -->
     <script>
-        // Tab Switch Logic - Enhanced for state management
-        function switchTab(toolId, clickTarget) {
-            document.querySelectorAll('.tool-content').forEach(tool => tool.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
-            document.getElementById(toolId).classList.add('active');
-            clickTarget.classList.add('active');
-        }
-
-        // --- HELPER FUNCTION FOR COPYING --- 
-        function copyResult(sourceId, buttonElement) {
-            let textToCopy;
-            const sourceEl = document.getElementById(sourceId);
-
-            if (sourceEl.tagName === 'TEXTAREA') {
-                textToCopy = sourceEl.value;
-            } else {
-                textToCopy = sourceEl.innerText;
-            }
-
-            if (!textToCopy) {
-                alert("Nothing generated to copy yet!");
-                return;
-            }
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                const originalText = buttonElement.innerText;
-                buttonElement.innerText = "✓ Copied";
-                buttonElement.style.backgroundColor = "#22c55e"; // Success Green
-                buttonElement.style.color = "#ffffff";
-
-                setTimeout(() => {
-                    buttonElement.innerText = originalText;
-                    buttonElement.style.backgroundColor = ""; // Reset
-                    buttonElement.style.color = "";
-                }, 1800);
-            }).catch(err => {
-                alert("Failed to copy. Please select and copy manually.");
+        // Fix Tab Switch Logic completely
+        function switchTab(toolId, btnId) {
+            // Hide all contents
+            document.querySelectorAll('.tool-content').forEach(tool => {
+                tool.classList.remove('active');
             });
+            // Remove active style from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content and apply active color to button
+            document.getElementById(toolId).classList.add('active');
+            document.getElementById(btnId).classList.add('active');
         }
 
-        // --- HELPER FUNCTION FOR TIME ESTIMATION ---
+        // Crack Time Formatter
         function formatCrackTime(seconds) {
-            const timeUnits = [
+            if (seconds === Infinity) return "Thousands of Centuries";
+            if (seconds < 1) return "< 1 Second";
+            
+            const units = [
                 { s: 31536000000, label: 'Centuries' },
                 { s: 31536000, label: 'Years' },
                 { s: 2592000, label: 'Months' },
@@ -403,59 +314,158 @@
                 { s: 1, label: 'Seconds' }
             ];
             
-            if (seconds === Infinity) return "Thousands of Centuries";
-            if (seconds < 1) return "< 1 Second";
-            
-            for (let i = 0; i < timeUnits.length; i++) {
-                if (seconds >= timeUnits[i].s) {
-                    const value = Math.floor(seconds / timeUnits[i].s);
-                    return `${value} ${timeUnits[i].label}${value > 1 ? 's' : ''}`;
+            for (let i = 0; i < units.length; i++) {
+                if (seconds >= units[i].s) {
+                    const val = Math.floor(seconds / units[i].s);
+                    return `${val} ${units[i].label}${val > 1 ? 's' : ''}`;
                 }
             }
         }
 
-        // 1. Password Generator & Entropy Analyzer
+        // 1. Password Generator Logic
         function generatePassword() {
-            const lengthInput = document.getElementById('password-length');
+            const lenInput = document.getElementById('password-length');
             const outputSpan = document.getElementById('actual-pass');
             const wrapper = document.getElementById('password-wrapper');
             const placeholder = document.getElementById('pass-placeholder');
             
-            // Result elements
             const strengthText = document.getElementById('strength-meter');
             const strengthFill = document.getElementById('strength-fill');
             const crackTimeSpan = document.getElementById('crack-time');
-            const copyBtn = document.getElementById('pass-copy-btn');
 
-            let length = parseInt(lengthInput.value);
+            let length = parseInt(lenInput.value);
             if (isNaN(length) || length < 6) length = 6;
             if (length > 100) length = 100;
-            lengthInput.value = length; // Correct visual value
+            lenInput.value = length;
 
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=';
             let newPassword = '';
-            
             for (let i = 0; i < length; i++) {
                 newPassword += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             
-            // --- Entropy & Crack Time Calculation ---
-            const charsetSize = chars.length; // 93 potential characters
-            const entropyBits = Math.log2(Math.pow(charsetSize, length));
+            // Entropy math setup
+            const entropyBits = Math.log2(Math.pow(chars.length, length));
+            const guessesPerSecond = 10000000000; 
+            const timeToCrackSeconds = Math.pow(2, entropyBits) / guessesPerSecond;
             
-            // Assuming a modest 10 billion guesses per second (GPU/ASIC)
-            const guessesPerSecond = 10000000000;
-            const guessesNeeded = Math.pow(2, entropyBits);
-            const timeToCrackSeconds = guessesNeeded / guessesPerSecond;
-            
-            // Strength Classification
             let strength = "Very Weak";
-            let color = "#ef4444"; // Red
+            let color = "#ef4444";
             let fillWidth = "15%";
 
-            if (entropyBits >= 112) { // Ultra-Secure 
-                strength = "Strong"; color = "#22c55e"; fillWidth = "100%"; 
-            } else if (entropyBits >= 80) { // Solid
-                strength = "Medium"; color = "#f97316"; fillWidth = "65%"; 
+            if (entropyBits >= 112) {
+                strength = "Strong"; color = "#22c55e"; fillWidth = "100%";
+            } else if (entropyBits >= 80) {
+                strength = "Medium"; color = "#f97316"; fillWidth = "65%";
             } else if (entropyBits >= 60) {
-                strength = "Decent"; col
+                strength = "Decent"; color = "#facc15"; fillWidth = "40%";
+            }
+
+            outputSpan.innerText = newPassword;
+            strengthText.innerText = strength;
+            strengthText.style.color = color;
+            strengthFill.style.backgroundColor = color;
+            strengthFill.style.width = fillWidth;
+            crackTimeSpan.innerText = formatCrackTime(timeToCrackSeconds);
+
+            placeholder.style.display = 'none';
+            wrapper.style.display = 'block';
+        }
+
+        function copyPasswordText() {
+            const text = document.getElementById('actual-pass').innerText;
+            const btn = document.getElementById('pass-copy-btn');
+            if(!text) return;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = "✓ Copied";
+                btn.style.backgroundColor = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy"; btn.style.backgroundColor = ""; }, 1500);
+            });
+        }
+
+        // 2. QR Code Logic
+        function generateQRCode() {
+            const inputData = document.getElementById('qr-input').value;
+            const qrCanvas = document.getElementById('qr-canvas');
+            const qrActions = document.getElementById('qr-actions');
+            const qrPlaceholder = document.getElementById('qr-placeholder');
+            
+            if (!inputData.trim()) {
+                alert("Please type or paste something first!");
+                return;
+            }
+            
+            qrPlaceholder.style.display = 'none';
+            const encodedData = encodeURIComponent(inputData);
+            const apiUrl = `https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=${encodedData}`;
+
+            const ctx = qrCanvas.getContext('2d');
+            const img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.src = apiUrl;
+
+            img.onload = function() {
+                qrCanvas.width = img.width;
+                qrCanvas.height = img.height;
+                ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
+                ctx.drawImage(img, 0, 0);
+                qrCanvas.style.display = 'block';
+                qrActions.style.display = 'block';
+            };
+        }
+
+        function downloadQR() {
+            const canvas = document.getElementById('qr-canvas');
+            const dataUrl = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'QRCode.png';
+            link.click();
+        }
+
+        // 3. Text Repeater Logic
+        function repeatText() {
+            const txt = document.getElementById('repeat-input').value;
+            const countInput = document.getElementById('repeat-count');
+            const addNewline = document.getElementById('add-newline').checked;
+            
+            const textOutput = document.getElementById('repeater-output');
+            const wrapper = document.getElementById('repeater-result-wrapper');
+            const placeholder = document.getElementById('repeater-placeholder');
+
+            let count = parseInt(countInput.value);
+            if (!txt || isNaN(count) || count < 1) {
+                alert("Please enter text and a valid repeat number.");
+                return;
+            }
+            
+            count = Math.min(count, 5000);
+            countInput.value = count;
+
+            let result = "";
+            const separator = addNewline ? "\n" : " ";
+            
+            for(let i = 0; i < count; i++) {
+                result += txt + separator;
+            }
+            
+            textOutput.value = result.trim();
+            placeholder.style.display = 'none';
+            wrapper.style.display = 'block';
+        }
+
+        function copyRepeaterText() {
+            const text = document.getElementById('repeater-output').value;
+            const btn = document.getElementById('repeat-copy-btn');
+            if(!text) return;
+
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = "✓ Copied";
+                btn.style.backgroundColor = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy Repeated Text"; btn.style.backgroundColor = ""; }, 1500);
+            });
+        }
+    </script>
+</body>
+    </html>
