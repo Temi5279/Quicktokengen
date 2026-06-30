@@ -169,16 +169,6 @@
         #strength-bar { width: 100px; height: 8px; border-radius: 4px; background-color: #334155; position: relative; }
         #strength-fill { width: 0%; height: 100%; border-radius: 4px; transition: width 0.3s; }
 
-        /* QR Canvas Area */
-        #qr-display-area { text-align: center; margin-top: 20px; }
-        canvas#qr-canvas {
-            display: none;
-            background-color: white;
-            padding: 15px;
-            border-radius: 12px;
-            margin: 0 auto 20px auto;
-        }
-
         /* SEO Informational Footer Article */
         .seo-section {
             max-width: 750px;
@@ -233,10 +223,11 @@
             <input type="text" id="qr-input" placeholder="Type text or paste URL here...">
             <button class="action-btn" onclick="generateQRCode()">Create QR Code</button>
             
-            <div id="qr-display-area">
-                <canvas id="qr-canvas"></canvas>
+            <div id="qr-display-area" style="text-align: center; margin-top: 20px;">
+                <img id="qr-image-result" src="" alt="QR Code Output" style="display: none; background-color: white; padding: 15px; border-radius: 12px; margin: 0 auto 20px auto; width: 200px; height: 200px;">
+                
                 <div id="qr-actions" style="display:none;">
-                    <button class="copy-btn" style="background-color:#22c55e; color: white; padding: 10px 20px;" onclick="downloadQR()">Download QR (PNG)</button>
+                    <button class="action-btn" style="background-color:#22c55e; color: white;" onclick="downloadQR()">Download QR (PNG)</button>
                 </div>
             </div>
             
@@ -283,18 +274,15 @@
     </div>
 
     <script>
-        // Fix Tab Switch Logic completely
+        // Tab Switch Logic
         function switchTab(toolId, btnId) {
-            // Hide all contents
             document.querySelectorAll('.tool-content').forEach(tool => {
                 tool.classList.remove('active');
             });
-            // Remove active style from all tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Show selected content and apply active color to button
             document.getElementById(toolId).classList.add('active');
             document.getElementById(btnId).classList.add('active');
         }
@@ -344,7 +332,6 @@
                 newPassword += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             
-            // Entropy math setup
             const entropyBits = Math.log2(Math.pow(chars.length, length));
             const guessesPerSecond = 10000000000; 
             const timeToCrackSeconds = Math.pow(2, entropyBits) / guessesPerSecond;
@@ -384,10 +371,10 @@
             });
         }
 
-        // 2. QR Code Logic (Fixed with active server link)
+        // 2. QR Code Logic (Fully Fixed)
         function generateQRCode() {
             const inputData = document.getElementById('qr-input').value;
-            const qrCanvas = document.getElementById('qr-canvas');
+            const qrImg = document.getElementById('qr-image-result');
             const qrActions = document.getElementById('qr-actions');
             const qrPlaceholder = document.getElementById('qr-placeholder');
             
@@ -399,28 +386,54 @@
             qrPlaceholder.style.display = 'none';
             const encodedData = encodeURIComponent(inputData);
             
-            // Switched to an active, reliable public API provider
-            const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedData}`;
+            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}`;
+            qrImg.style.display = 'block';
+            qrActions.style.display = 'block';
+        }
 
-            const ctx = qrCanvas.getContext('2d');
-            const img = new Image();
-            img.crossOrigin = 'Anonymous'; // Keeps your download button working smoothly
-            img.src = apiUrl;
+        function downloadQR() {
+            const inputData = document.getElementById('qr-input').value;
+            if (!inputData.trim()) {
+                alert("Nothing to download yet!");
+                return;
+            }
 
-            img.onload = function() {
-                qrCanvas.width = img.width;
-                qrCanvas.height = img.height;
-                ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
-                ctx.drawImage(img, 0, 0);
-                qrCanvas.style.display = 'block';
-                qrActions.style.display = 'block';
-            };
-            
-            img.onerror = function() {
-                qrPlaceholder.innerText = "Error loading QR Code. Please check connection.";
-                qrPlaceholder.style.display = 'block';
-                qrPlaceholder.style.color = "#ef4444";
-            };
+            const downloadBtn = document.querySelector('#qr-actions button');
+            const originalText = downloadBtn.innerText;
+            downloadBtn.innerText = "Downloading...";
+            downloadBtn.style.backgroundColor = "#64748b"; 
+
+            const encodedData = encodeURIComponent(inputData);
+            const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}`;
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Network error");
+                    return response.blob(); 
+                })
+                .then(blob => {
+                    const blobUrl = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = blobUrl;
+                    link.download = 'QuickTokenGen-QRCode.png';
+                    
+                    document.body.appendChild(link);
+                    link.click(); 
+                    document.body.removeChild(link);
+                    
+                    URL.revokeObjectURL(blobUrl);
+
+                    downloadBtn.innerText = "✓ Saved to Device";
+                    downloadBtn.style.backgroundColor = "#22c55e";
+                    setTimeout(() => {
+                        downloadBtn.innerText = originalText;
+                    }, 2000);
+                })
+                .catch(err => {
+                    alert("Download failed. Long-press the QR image to save manually!");
+                    downloadBtn.innerText = originalText;
+                    downloadBtn.style.backgroundColor = "";
+                });
         }
 
         // 3. Text Repeater Logic
