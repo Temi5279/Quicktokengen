@@ -3,139 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickTokenGen Pro | Secure Passwords & Free Web Tools</title>
-    <meta name="description" content="Generate secure random passwords with live strength analysis and crack time estimates. Free, fast, and 100% private.">
-    
-    <style>
-        *, *::before, *::after { box-sizing: border-box; }
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-        }
-
-        /* Top Navigation Bar */
-        .navbar {
-            display: flex;
-            gap: 10px;
-            background-color: #1e293b;
-            padding: 8px 12px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            border: 1px solid #334155;
-            max-width: 550px;
-            width: 100%;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .nav-link {
-            color: #94a3b8;
-            text-decoration: none;
-            padding: 8px 14px;
-            font-size: 0.88rem;
-            font-weight: 700;
-            border-radius: 8px;
-            transition: all 0.2s ease;
-        }
-        .nav-link.active, .nav-link:hover {
-            background-color: #38bdf8;
-            color: #0f172a;
-        }
-
-        .container {
-            background-color: #1e293b;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
-            width: 100%;
-            max-width: 550px;
-            text-align: center;
-            margin-bottom: 30px;
-            border: 1px solid #334155;
-        }
-
-        h1 { font-size: 1.6rem; margin-top: 0; margin-bottom: 25px; color: #38bdf8; font-weight: 800; }
-        
-        .box {
-            background-color: #0f172a;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 1.15rem;
-            color: #cbd5e1;
-            border: 1px solid #334155;
-            word-break: break-all;
-            min-height: 48px;
-            font-family: 'Courier New', Courier, monospace;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            color: #f8fafc;
-            padding: 14px;
-            border-radius: 8px;
-            font-size: 1rem;
-            margin-bottom: 18px;
-        }
-
-        label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; display: block; text-align: left; margin-bottom: 6px; }
-
-        .action-btn {
-            background-color: #38bdf8;
-            color: #0f172a;
-            border: none;
-            padding: 15px 24px;
-            font-size: 1.05rem;
-            font-weight: 800;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.2s;
-            text-transform: uppercase;
-        }
-        .action-btn:hover { background-color: #7dd3fc; }
-
-        .copy-btn {
-            background-color: #334155;
-            color: #e2e8f0;
-            border: none;
-            padding: 8px 14px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-
-        #password-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        #strength-meter { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; }
-        #strength-bar { width: 100px; height: 8px; border-radius: 4px; background-color: #334155; position: relative; }
-        #strength-fill { width: 0%; height: 100%; border-radius: 4px; transition: width 0.3s; }
-
-        .seo-section { max-width: 750px; text-align: left; border-top: 1px solid #334155; padding: 40px 20px; line-height: 1.7; color: #94a3b8; }
-        .seo-section h2 { color: #38bdf8; font-size: 1.3rem; margin-top: 25px; }
-    </style>
+    <title>QuickTokenGen Pro | Secure Password Generator & Developer Utilities</title>
+    <meta name="description" content="Generate high-entropy secure random passwords with live strength checks and estimated crack time calculations. Free, zero-logging client-side developer utility.">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="/" class="nav-link active">Password</a>
-        <a href="/qr-code/" class="nav-link">QR Code</a>
-        <a href="/text-repeater/" class="nav-link">Repeater</a>
-        <a href="/base64/" class="nav-link">Base64</a>
+        <a href="./" class="nav-link active">Password</a>
+        <a href="./qr-code/" class="nav-link">QR Code</a>
+        <a href="./text-repeater/" class="nav-link">Repeater</a>
+        <a href="./base64/" class="nav-link">Base64</a>
     </nav>
 
     <div class="container">
         <h1>Secure Password Generator</h1>
         
-        <label>Password Length:</label>
+        <label for="password-length">Password Length:</label>
         <input type="number" id="password-length" min="6" max="100" value="16">
         
         <button class="action-btn" onclick="generatePassword()">Generate Password</button>
@@ -156,8 +40,29 @@
     </div>
 
     <div class="seo-section">
-        <h2>Generate Strong, Cryptographically Secure Passwords Online</h2>
-        <p>Protect your online accounts with QuickTokenGen's secure password generator. Our client-side algorithm calculates real-time password entropy, giving you strength checks and crack time estimations without sending data across networks.</p>
+        <h2>Cryptographically Secure Online Password Generator</h2>
+        <p>Welcome to <strong>QuickTokenGen</strong>, your dedicated privacy-focused tool for generating strong, random passwords and access tokens. Modern digital security requires robust authentication credentials to protect personal accounts, databases, and remote server access from dictionary and automated brute-force attacks.</p>
+
+        <h2>How Password Entropy & Crack Time Calculations Work</h2>
+        <p>Password security is fundamentally measured by <em>entropy</em>, calculated in information bits. The mathematical formula for password entropy is:</p>
+        <p><code style="color: #38bdf8;">Entropy (E) = L × log2(N)</code></p>
+        <p>Where <strong>L</strong> represents the total character length of the generated password string and <strong>N</strong> represents the size of the available character pool (e.g., uppercase, lowercase, numbers, and symbols). A high entropy score ensures that computer clusters and hardware-accelerated cracking rigs cannot easily guess your passphrase within practical time limits.</p>
+
+        <h2>Key Security Benefits of QuickTokenGen</h2>
+        <ul>
+            <li><strong>100% Client-Side Execution:</strong> Credentials are generated instantly in your browser JavaScript memory engine. Raw passwords are never transmitted across networks or stored on remote web servers.</li>
+            <li><strong>Cryptographically Sound Randomness:</strong> Utilizes browser-native pseudo-random generation algorithms to ensure uniform distribution across all characters.</li>
+            <li><strong>Zero Tracking or Storage:</strong> We adhere to a strict no-logging protocol, guaranteeing complete privacy for your security keys and secret tokens.</li>
+        </ul>
+
+        <h2>Best Practices for Creating Unhackable Credentials</h2>
+        <p>To maximize your account security across internet platforms, follow these security recommendations:</p>
+        <ul>
+            <li>Maintain a minimum length of <strong>16 characters</strong> for personal accounts and <strong>32+ characters</strong> for API keys and database roots.</li>
+            <li>Avoid using predictable phrases, names, birth dates, or dictionary words.</li>
+            <li>Never reuse the same password across multiple websites or authentication services.</li>
+            <li>Use a trusted offline password manager to store and manage generated passphrases.</li>
+        </ul>
     </div>
 
     <script>
