@@ -3,23 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickTokenGen Pro | Secure Passwords, QR Codes & Text Utilities</title>
-    <meta name="description" content="Generate secure random passwords with live strength checks, create instant downloadable QR codes, and use our advanced text repeater utility. Free, fast, and secure.">
+    <title>QuickTokenGen Pro | Secure Passwords & Free Web Tools</title>
+    <meta name="description" content="Generate secure random passwords with live strength analysis and crack time estimates. Free, fast, and 100% private.">
     
     <style>
-        /* Global Styles & Modern CSS Reset */
         *, *::before, *::after { box-sizing: border-box; }
-        
         body {
             background-color: #0f172a;
             color: #f8fafc;
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
+        }
+
+        /* Top Navigation Bar */
+        .navbar {
+            display: flex;
+            gap: 10px;
+            background-color: #1e293b;
+            padding: 8px 12px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+            max-width: 550px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nav-link {
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 8px 14px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+        .nav-link.active, .nav-link:hover {
+            background-color: #38bdf8;
+            color: #0f172a;
         }
 
         .container {
@@ -30,56 +56,12 @@
             width: 100%;
             max-width: 550px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             border: 1px solid #334155;
         }
 
-        h1 {
-            font-size: 1.6rem;
-            margin-top: 0;
-            margin-bottom: 25px;
-            color: #38bdf8;
-            font-weight: 800;
-        }
-
-        /* Tab Navigation */
-        .tabs {
-            display: flex;
-            justify-content: space-between;
-            background-color: #0f172a;
-            padding: 6px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .tab-btn {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            padding: 12px 10px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.2s ease;
-            width: 32%;
-        }
-
-        .tab-btn.active {
-            background-color: #38bdf8;
-            color: #0f172a;
-        }
-
-        /* Content Visibility */
-        .tool-content {
-            display: none;
-        }
-
-        .tool-content.active {
-            display: block;
-        }
-
-        /* Shared Output Box */
+        h1 { font-size: 1.6rem; margin-top: 0; margin-bottom: 25px; color: #38bdf8; font-weight: 800; }
+        
         .box {
             background-color: #0f172a;
             padding: 15px;
@@ -93,8 +75,7 @@
             font-family: 'Courier New', Courier, monospace;
         }
 
-        /* Inputs */
-        input[type="text"], input[type="number"], textarea {
+        input[type="number"] {
             width: 100%;
             background-color: #0f172a;
             border: 1px solid #334155;
@@ -103,36 +84,10 @@
             border-radius: 8px;
             font-size: 1rem;
             margin-bottom: 18px;
-            font-family: inherit;
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #38bdf8;
-        }
+        label { font-size: 0.9rem; color: #94a3b8; font-weight: 600; display: block; text-align: left; margin-bottom: 6px; }
 
-        textarea {
-            resize: vertical;
-        }
-
-        .row {
-            display: flex;
-            gap: 15px;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 18px;
-        }
-
-        label {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            font-weight: 600;
-            display: block;
-            text-align: left;
-            margin-bottom: 6px;
-        }
-
-        /* Buttons */
         .action-btn {
             background-color: #38bdf8;
             color: #0f172a;
@@ -145,12 +100,8 @@
             width: 100%;
             transition: all 0.2s;
             text-transform: uppercase;
-            margin-bottom: 10px;
         }
-
-        .action-btn:hover {
-            background-color: #7dd3fc;
-        }
+        .action-btn:hover { background-color: #7dd3fc; }
 
         .copy-btn {
             background-color: #334155;
@@ -163,145 +114,61 @@
             cursor: pointer;
         }
 
-        /* Indicators */
         #password-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
         #strength-meter { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; }
         #strength-bar { width: 100px; height: 8px; border-radius: 4px; background-color: #334155; position: relative; }
         #strength-fill { width: 0%; height: 100%; border-radius: 4px; transition: width 0.3s; }
 
-        /* SEO Informational Footer Article */
-        .seo-section {
-            max-width: 750px;
-            text-align: left;
-            border-top: 1px solid #334155;
-            padding: 40px 20px;
-            margin-top: 20px;
-            line-height: 1.7;
-            color: #94a3b8;
-        }
-
-        .seo-section h2 { color: #38bdf8; font-size: 1.4rem; margin-top: 30px; }
-        .seo-section p { font-size: 0.95rem; }
+        .seo-section { max-width: 750px; text-align: left; border-top: 1px solid #334155; padding: 40px 20px; line-height: 1.7; color: #94a3b8; }
+        .seo-section h2 { color: #38bdf8; font-size: 1.3rem; margin-top: 25px; }
     </style>
 </head>
 <body>
 
+    <nav class="navbar">
+        <a href="/" class="nav-link active">Password</a>
+        <a href="/qr-code/" class="nav-link">QR Code</a>
+        <a href="/text-repeater/" class="nav-link">Repeater</a>
+        <a href="/base64/" class="nav-link">Base64</a>
+    </nav>
+
     <div class="container">
-        <div class="tabs">
-            <button class="tab-btn active" id="btn-pass" onclick="switchTab('password-tool', 'btn-pass')">Password</button>
-            <button class="tab-btn" id="btn-qr" onclick="switchTab('qr-tool', 'btn-qr')">QR Code</button>
-            <button class="tab-btn" id="btn-repeat" onclick="switchTab('repeater-tool', 'btn-repeat')">Repeater</button>
-        </div>
+        <h1>Secure Password Generator</h1>
+        
+        <label>Password Length:</label>
+        <input type="number" id="password-length" min="6" max="100" value="16">
+        
+        <button class="action-btn" onclick="generatePassword()">Generate Password</button>
 
-        <div id="password-tool" class="tool-content active">
-            <h1>Secure Password Generator</h1>
-            
-            <label>Password Length:</label>
-            <input type="number" id="password-length" min="6" max="100" value="16">
-            
-            <button class="action-btn" onclick="generatePassword()">Generate Password</button>
-
-            <div id="password-wrapper" style="display: none; margin-top: 20px; text-align: left;">
-                <div id="password-meta">
-                    <div style="display:flex; align-items:center; gap: 8px;">
-                        <span id="strength-meter">Weak</span>
-                        <div id="strength-bar"><div id="strength-fill"></div></div>
-                    </div>
-                    <button class="copy-btn" id="pass-copy-btn" onclick="copyPasswordText()">Copy</button>
+        <div id="password-wrapper" style="display: none; margin-top: 20px; text-align: left;">
+            <div id="password-meta">
+                <div style="display:flex; align-items:center; gap: 8px;">
+                    <span id="strength-meter">Weak</span>
+                    <div id="strength-bar"><div id="strength-fill"></div></div>
                 </div>
-                <div class="box">
-                    <span id="actual-pass"></span>
-                </div>
-                <div style="text-align: right; color: #94a3b8; font-size: 0.85rem;">Crack Time: <strong id="crack-time" style="color:#e2e8f0;">0 seconds</strong></div>
+                <button class="copy-btn" id="pass-copy-btn" onclick="copyPasswordText()">Copy</button>
             </div>
-            
-            <div id="pass-placeholder" style="color: #64748b; font-style: italic; margin-top: 20px;">Your secure password will appear here...</div>
+            <div class="box"><span id="actual-pass"></span></div>
+            <div style="text-align: right; color: #94a3b8; font-size: 0.85rem;">Crack Time: <strong id="crack-time" style="color:#e2e8f0;">0 seconds</strong></div>
         </div>
-
-        <div id="qr-tool" class="tool-content">
-            <h1>Free Online QR Code Generator</h1>
-            <input type="text" id="qr-input" placeholder="Type text or paste URL here...">
-            <button class="action-btn" onclick="generateQRCode()">Create QR Code</button>
-            
-            <div id="qr-display-area" style="text-align: center; margin-top: 20px;">
-                <img id="qr-image-result" src="" alt="QR Code Output" style="display: none; background-color: white; padding: 15px; border-radius: 12px; margin: 0 auto 20px auto; width: 200px; height: 200px;">
-                
-                <div id="qr-actions" style="display:none;">
-                    <button class="action-btn" style="background-color:#22c55e; color: white;" onclick="downloadQR()">Download QR (PNG)</button>
-                </div>
-            </div>
-            
-            <div id="qr-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your dynamic QR code will render here...</div>
-        </div>
-
-        <div id="repeater-tool" class="tool-content">
-            <h1>Fast Text & Spam Repeater Tool</h1>
-            <textarea id="repeat-input" rows="3" placeholder="Enter text to repeat..."></textarea>
-            
-            <div class="row">
-                <div style="width: 48%;">
-                    <label>Repeats:</label>
-                    <input type="number" id="repeat-count" min="1" max="5000" value="10">
-                </div>
-                <div style="width: 48%; display: flex; align-items: center; gap: 8px; margin-top: 20px;">
-                    <input type="checkbox" id="add-newline" style="width:18px; height:18px; accent-color:#38bdf8;">
-                    <label for="add-newline" style="margin-bottom:0; cursor:pointer; color: #f8fafc;">Add Line Break</label>
-                </div>
-            </div>
-            
-            <button class="action-btn" onclick="repeatText()">Repeat Text</button>
-            
-            <div id="repeater-result-wrapper" style="display:none; margin-top: 20px; text-align: left;">
-                <div style="text-align: right; margin-bottom: 10px;">
-                    <button class="copy-btn" id="repeat-copy-btn" onclick="copyRepeaterText()">Copy Repeated Text</button>
-                </div>
-                <textarea id="repeater-output" rows="6" readonly></textarea>
-            </div>
-            
-            <div id="repeater-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your repeated text output will appear here...</div>
-        </div>
+        
+        <div id="pass-placeholder" style="color: #64748b; font-style: italic; margin-top: 20px;">Your secure password will appear here...</div>
     </div>
 
     <div class="seo-section">
-        <h2>Unlock Free, Secure Web Utilities with QuickTokenGen</h2>
-        <p>Welcome to QuickTokenGen, your fast, unified online hub for lightweight developer and productivity tools. Modern digital tasks require efficiency without sacrificing security or privacy. We've built an interconnected suite that executes complex functions directly in your browser. No downloads, no account setup, and 100% free.</p>
-
-        <h2>Professional Password Generation with Smart Strength Analysis</h2>
-        <p>Our advanced algorithm instantly analyzes entropy to provide a visual strength rating (Weak to Strong) and a calculated crack time estimate. Secure localized execution means your raw credentials are never sent over the network.</p>
-
-        <h2>Free, Dynamic QR Code Creator with Instant Downloads</h2>
-        <p>QuickResponse (QR) matrices are essential for bridging physical setups with instant mobile URLs. Paste your destination address, strike the render switch, and scan or download the customized canvas matrix instantly from any standard mobile device camera lens.</p>
+        <h2>Generate Strong, Cryptographically Secure Passwords Online</h2>
+        <p>Protect your online accounts with QuickTokenGen's secure password generator. Our client-side algorithm calculates real-time password entropy, giving you strength checks and crack time estimations without sending data across networks.</p>
     </div>
 
     <script>
-        // Tab Switch Logic
-        function switchTab(toolId, btnId) {
-            document.querySelectorAll('.tool-content').forEach(tool => {
-                tool.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            document.getElementById(toolId).classList.add('active');
-            document.getElementById(btnId).classList.add('active');
-        }
-
-        // Crack Time Formatter
         function formatCrackTime(seconds) {
             if (seconds === Infinity) return "Thousands of Centuries";
             if (seconds < 1) return "< 1 Second";
-            
             const units = [
-                { s: 31536000000, label: 'Centuries' },
-                { s: 31536000, label: 'Years' },
-                { s: 2592000, label: 'Months' },
-                { s: 86400, label: 'Days' },
-                { s: 3600, label: 'Hours' },
-                { s: 60, label: 'Minutes' },
-                { s: 1, label: 'Seconds' }
+                { s: 31536000000, label: 'Centuries' }, { s: 31536000, label: 'Years' },
+                { s: 2592000, label: 'Months' }, { s: 86400, label: 'Days' },
+                { s: 3600, label: 'Hours' }, { s: 60, label: 'Minutes' }, { s: 1, label: 'Seconds' }
             ];
-            
             for (let i = 0; i < units.length; i++) {
                 if (seconds >= units[i].s) {
                     const val = Math.floor(seconds / units[i].s);
@@ -310,13 +177,11 @@
             }
         }
 
-        // 1. Password Generator Logic
         function generatePassword() {
             const lenInput = document.getElementById('password-length');
             const outputSpan = document.getElementById('actual-pass');
             const wrapper = document.getElementById('password-wrapper');
             const placeholder = document.getElementById('pass-placeholder');
-            
             const strengthText = document.getElementById('strength-meter');
             const strengthFill = document.getElementById('strength-fill');
             const crackTimeSpan = document.getElementById('crack-time');
@@ -333,20 +198,12 @@
             }
             
             const entropyBits = Math.log2(Math.pow(chars.length, length));
-            const guessesPerSecond = 10000000000; 
-            const timeToCrackSeconds = Math.pow(2, entropyBits) / guessesPerSecond;
+            const timeToCrackSeconds = Math.pow(2, entropyBits) / 10000000000;
             
-            let strength = "Very Weak";
-            let color = "#ef4444";
-            let fillWidth = "15%";
-
-            if (entropyBits >= 112) {
-                strength = "Strong"; color = "#22c55e"; fillWidth = "100%";
-            } else if (entropyBits >= 80) {
-                strength = "Medium"; color = "#f97316"; fillWidth = "65%";
-            } else if (entropyBits >= 60) {
-                strength = "Decent"; color = "#facc15"; fillWidth = "40%";
-            }
+            let strength = "Very Weak", color = "#ef4444", fillWidth = "15%";
+            if (entropyBits >= 112) { strength = "Strong"; color = "#22c55e"; fillWidth = "100%"; }
+            else if (entropyBits >= 80) { strength = "Medium"; color = "#f97316"; fillWidth = "65%"; }
+            else if (entropyBits >= 60) { strength = "Decent"; color = "#facc15"; fillWidth = "40%"; }
 
             outputSpan.innerText = newPassword;
             strengthText.innerText = strength;
@@ -363,121 +220,12 @@
             const text = document.getElementById('actual-pass').innerText;
             const btn = document.getElementById('pass-copy-btn');
             if(!text) return;
-            
             navigator.clipboard.writeText(text).then(() => {
                 btn.innerText = "✓ Copied";
                 btn.style.backgroundColor = "#22c55e";
                 setTimeout(() => { btn.innerText = "Copy"; btn.style.backgroundColor = ""; }, 1500);
             });
         }
-
-        // 2. QR Code Logic (Fully Fixed)
-        function generateQRCode() {
-            const inputData = document.getElementById('qr-input').value;
-            const qrImg = document.getElementById('qr-image-result');
-            const qrActions = document.getElementById('qr-actions');
-            const qrPlaceholder = document.getElementById('qr-placeholder');
-            
-            if (!inputData.trim()) {
-                alert("Please type or paste something first!");
-                return;
-            }
-            
-            qrPlaceholder.style.display = 'none';
-            const encodedData = encodeURIComponent(inputData);
-            
-            qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}`;
-            qrImg.style.display = 'block';
-            qrActions.style.display = 'block';
-        }
-
-        function downloadQR() {
-            const inputData = document.getElementById('qr-input').value;
-            if (!inputData.trim()) {
-                alert("Nothing to download yet!");
-                return;
-            }
-
-            const downloadBtn = document.querySelector('#qr-actions button');
-            const originalText = downloadBtn.innerText;
-            downloadBtn.innerText = "Downloading...";
-            downloadBtn.style.backgroundColor = "#64748b"; 
-
-            const encodedData = encodeURIComponent(inputData);
-            const apiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodedData}`;
-
-            fetch(apiUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error("Network error");
-                    return response.blob(); 
-                })
-                .then(blob => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = blobUrl;
-                    link.download = 'QuickTokenGen-QRCode.png';
-                    
-                    document.body.appendChild(link);
-                    link.click(); 
-                    document.body.removeChild(link);
-                    
-                    URL.revokeObjectURL(blobUrl);
-
-                    downloadBtn.innerText = "✓ Saved to Device";
-                    downloadBtn.style.backgroundColor = "#22c55e";
-                    setTimeout(() => {
-                        downloadBtn.innerText = originalText;
-                    }, 2000);
-                })
-                .catch(err => {
-                    alert("Download failed. Long-press the QR image to save manually!");
-                    downloadBtn.innerText = originalText;
-                    downloadBtn.style.backgroundColor = "";
-                });
-        }
-
-        // 3. Text Repeater Logic
-        function repeatText() {
-            const txt = document.getElementById('repeat-input').value;
-            const countInput = document.getElementById('repeat-count');
-            const addNewline = document.getElementById('add-newline').checked;
-            
-            const textOutput = document.getElementById('repeater-output');
-            const wrapper = document.getElementById('repeater-result-wrapper');
-            const placeholder = document.getElementById('repeater-placeholder');
-
-            let count = parseInt(countInput.value);
-            if (!txt || isNaN(count) || count < 1) {
-                alert("Please enter text and a valid repeat number.");
-                return;
-            }
-            
-            count = Math.min(count, 5000);
-            countInput.value = count;
-
-            let result = "";
-            const separator = addNewline ? "\n" : " ";
-            
-            for(let i = 0; i < count; i++) {
-                result += txt + separator;
-            }
-            
-            textOutput.value = result.trim();
-            placeholder.style.display = 'none';
-            wrapper.style.display = 'block';
-        }
-
-        function copyRepeaterText() {
-            const text = document.getElementById('repeater-output').value;
-            const btn = document.getElementById('repeat-copy-btn');
-            if(!text) return;
-
-            navigator.clipboard.writeText(text).then(() => {
-                btn.innerText = "✓ Copied";
-                btn.style.backgroundColor = "#22c55e";
-                setTimeout(() => { btn.innerText = "Copy Repeated Text"; btn.style.backgroundColor = ""; }, 1500);
-            });
-        }
     </script>
 </body>
-    </html>
+</html>
