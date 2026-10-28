@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center & FAQ | QuickTokenGen Pro</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EG0381S98K');
+    </script>
+
+    <meta name="description" content="QuickTokenGen Pro Help Center. Explore tool guides, privacy architecture details, and answers to frequently asked questions about password generation, QR codes, Base64, and text repetition.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="manifest" href="../manifest.json">
+
+    <style>
+        .faq-section {
+            text-align: left;
+            margin-top: 25px;
+        }
+        .faq-item {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color 0.2s ease;
+        }
+        .faq-item:hover {
+            border-color: #38bdf8;
+        }
+        .faq-question {
+            width: 100%;
+            padding: 16px 20px;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-question::after {
+            content: '+';
+            font-size: 1.3rem;
+            color: #38bdf8;
+            transition: transform 0.2s ease;
+        }
+        .faq-item.active .faq-question::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background-color: #0a0f1d;
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 16px 20px;
+            border-top: 1px solid #1e293b;
+        }
+        .faq-answer p {
+            margin: 0 0 10px 0;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-answer ul {
+            margin: 8px 0 8px 20px;
+            padding: 0;
+        }
+        .faq-answer li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../" class="nav-link">Password</a>
+        <a href="../qr-code/" class="nav-link">QR Code</a>
+        <a href="../text-repeater/" class="nav-link">Repeater</a>
+        <a href="../base64/" class="nav-link">Base64</a>
+    </nav>
+
+    <div class="container">
+        <h1>Help Center</h1>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">Welcome to the QuickTokenGen Pro Help Center. Learn how our developer utilities work and read answers to frequently asked questions.</p>
+    </div>
+
+    <!-- ABOUT & OVERVIEW SECTION -->
+    <div class="seo-section" style="margin-top: 10px;">
+        <h2>About QuickTokenGen Pro</h2>
+        <p><strong>QuickTokenGen Pro</strong> is a light-weight, privacy-focused developer suite designed for quick, secure utilities. We prioritize <strong>client-side execution</strong>, meaning your sensitive passphrases, payloads, and strings are computed directly inside your browser rather than sent to remote servers.</p>
+
+        <h2>Tool Usage Guides</h2>
+        <ul>
+            <li><strong>Password Generator:</strong> Select your desired password length and character sets (uppercase, lowercase, numbers, special symbols) to create cryptographic passphrases with instant strength feedback.</li>
+            <li><strong>QR Code Creator:</strong> Enter any text or URL to generate instant, downloadable PNG QR codes for sharing links, contact details, or credentials.</li>
+            <li><strong>Base64 Encoder & Decoder:</strong> Convert raw strings into valid Base64 ASCII output or decode encrypted payloads back into human-readable text.</li>
+            <li><strong>Text Repeater:</strong> Instantly duplicate text strings or emojis up to 5,000 times for testing line lengths, input boundaries, or form fields.</li>
+        </ul>
+    </div>
+
+    <!-- INTEGRATED FAQ ACCORDION -->
+    <div class="container" style="max-width: 750px; padding: 0 10px; margin-top: 35px;">
+        <h2 style="color: #f8fafc; font-size: 1.4rem; text-align: center; margin-bottom: 20px;">Frequently Asked Questions</h2>
+
+        <div class="faq-section">
+            
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Are my passwords or inputs stored anywhere?</button>
+                <div class="faq-answer">
+                    <p><strong>No.</strong> Everything runs 100% in your local web browser memory using client-side JavaScript. Your inputs, secrets, and generated passwords are never saved, logged, or sent to any server.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">How is password entropy and strength calculated?</button>
+                <div class="faq-answer">
+                    <p>Password entropy measures mathematical randomness in bits. It is calculated using the formula:</p>
+                    <p><code style="color: #38bdf8;">Entropy = Length × log₂ (Character Pool Size)</code></p>
+                    <p>Higher bit depth indicates a larger search space, making brute-force attacks significantly more difficult.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Is QuickTokenGen Pro completely free to use?</button>
+                <div class="faq-answer">
+                    <p>Yes, all tools on QuickTokenGen Pro are 100% free with no registration, subscriptions, or daily limits.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">How do I install QuickTokenGen Pro as an app on my phone?</button>
+                <div class="faq-answer">
+                    <p>QuickTokenGen Pro is a Progressive Web App (PWA). You can install it directly to your home screen:</p>
+                    <ul>
+                        <li><strong>Android (Chrome/Edge):</strong> Open the browser menu (3 dots) and select <em>"Add to Home screen"</em> or <em>"Install app"</em>.</li>
+                        <li><strong>iOS (Safari):</strong> Tap the Share icon at the bottom of the screen and select <em>"Add to Home Screen"</em>.</li>
+                        <li><strong>Desktop:</strong> Click the small install button inside your browser address bar.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">Can I use the app offline?</button>
+                <div class="faq-answer">
+                    <p>Yes! Once installed on your phone or desktop, core features like the Password Generator, Base64 Encoder, and Text Repeater work completely offline without an active internet connection.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">How do I submit feedback or report an issue?</button>
+                <div class="faq-answer">
+                    <p>You can reach out to us directly through our <a href="../contact/" style="color: #38bdf8; text-decoration: none;">Contact Page</a> or by emailing <strong style="color: #38bdf8;">contact@quicktokengen.dev</strong>.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(button) {
+            const faqItem = button.parentElement;
+            const isOpen = faqItem.classList.contains('active');
+
+            // Close all open FAQs for clean accordion effect
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Toggle selected item
+            if (!isOpen) {
+                faqItem.classList.add('active');
+            }
+        }
+    </script>
+
+<footer style="margin-top: 50px; padding: 25px 10px; text-align: center; border-top: 1px solid #334155; width: 100%; max-width: 750px;">
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+        <a href="../privacy/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+        <a href="../terms/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+        <a href="../cookies/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+        <a href="../help/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: bold;">Help Center</a>
+        <a href="../contact/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: bold;">Contact Us</a>
+        <a href="../donate/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: bold;">Donate</a>
+    </div>
+    <p style="color: #64748b; font-size: 0.8rem; margin: 0;">© 2026 QuickTokenGen Pro. All rights reserved.</p>
+</footer>
+</body>
+</html>
