@@ -2,7 +2,8 @@ QuickTokenGen
 
 QuickTokenGen is a free browser-based utility tool that includes a secure password generator, QR code generator, and text repeater.
 
-Live site: https://temi5279.github.io/Quicktokengen/
+Live site: 
+https://quicktokengen.dev
 
 
 QuickTokenGen is a lightweight web tool designed to help users quickly generate secure passwords, create QR codes, and repeat text efficiently — all directly in the browser without needing to install any software or create an account.
@@ -20,11 +21,13 @@ Simple and fast interface
 3. Text Repeater
 Quickly repeat any text multiple times
 Useful for testing, formatting, or spam-style text generation
+4. Base 64
+Decoding and encoding of words
 Tech Stack
 HTML
 
 Project Status
-Still in development. More features and improvements will be added over time.
+Live. More features and improvements will be added over time.
 
 Purpose
 To provide simple, fast, and free online utilities that work directly in the browser without complicated setups.
