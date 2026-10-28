@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | QuickTokenGen</title>
+    <title>Contact Us | QuickTokenGen Pro</title>
 
 <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
@@ -14,7 +14,7 @@
     gtag('config', 'G-EG0381S98K');
   </script>
 
-    <meta name="description" content="Get in touch with QuickTokenGen support. Send inquiries, bug reports, feature requests, or developer feedback directly.">
+    <meta name="description" content="Contact the QuickTokenGen Pro developer team. Learn about our strict privacy-first architecture, send security feedback, or report technical inquiries directly.">
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="manifest" href="../manifest.json">
@@ -29,15 +29,15 @@
     </nav>
 
     <div class="container">
-        <h1>Contact Us</h1>
-        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">Have questions, bug reports, feature requests, or sponsorship inquiries? Reach out to us below or directly at <strong style="color: #38bdf8;">contact@quicktokengen.dev</strong>.</p>
+        <h1>Get in Touch</h1>
+        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 25px;">Have questions, feature suggestions, bug reports, or partnership inquiries? Reach out to the QuickTokenGen developer team below or directly at <strong style="color: #38bdf8;">contact@quicktokengen.dev</strong>.</p>
         
         <form onsubmit="handleContactSubmit(event)" style="text-align: left;">
             <label for="contact-name">Your Name:</label>
             <input type="text" id="contact-name" placeholder="John Doe" required style="width: 100%; padding: 10px; margin-bottom: 15px; background-color: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 8px;">
 
             <label for="contact-subject">Subject:</label>
-            <input type="text" id="contact-subject" placeholder="e.g., Feature Suggestion / Bug Report" required style="width: 100%; padding: 10px; margin-bottom: 15px; background-color: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 8px;">
+            <input type="text" id="contact-subject" placeholder="e.g., Security Inquiry / Feature Suggestion / Bug Report" required style="width: 100%; padding: 10px; margin-bottom: 15px; background-color: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 8px;">
 
             <label for="contact-message">Message:</label>
             <textarea id="contact-message" rows="5" placeholder="Type your message here..." required style="width: 100%; padding: 10px; margin-bottom: 20px; background-color: #0f172a; border: 1px solid #334155; color: #fff; border-radius: 8px; font-family: inherit;"></textarea>
@@ -47,8 +47,21 @@
     </div>
 
     <div class="seo-section">
-        <h2>Developer Support & Feedback</h2>
-        <p>At <strong>QuickTokenGen</strong>, we value user feedback to continuously refine our client-side developer tools. Whether you noticed an issue with generator entropy, want a new feature added, or want to discuss partnership opportunities, we respond to inquiries promptly via <strong>contact@quicktokengen.dev</strong>.</p>
+        <h2>Our Privacy-First Commitment at QuickTokenGen</h2>
+        <p>At <strong>QuickTokenGen Pro</strong>, user privacy and data security are not afterthought features—they are the foundational core of how our platform is built. We understand the sensitivity of generating access credentials, encoding payloads, and managing utility data.</p>
+
+        <h2>How QuickTokenGen Protects Your Privacy</h2>
+        <ul>
+            <li><strong>100% Client-Side Engine:</strong> All operations for password generation, Base64 conversion, QR code creation, and text repetition execute directly in your web browser memory. Your sensitive inputs and generated secrets are never sent to remote servers or stored in any database.</li>
+            <li><strong>Zero Server-Side Logging:</strong> We do not track, log, or inspect the content of your inputs or generated tokens.</li>
+            <li><strong>Transparent Developer Communication:</strong> If you discover potential security concerns or want to discuss technical implementations, we prioritize security disclosures and developer feedback promptly.</li>
+        </ul>
+
+        <h2>Direct Contact Options</h2>
+        <p>For official inquiries, reach out directly through the following channel:</p>
+        <ul>
+            <li><strong>General Support & Privacy Inquiries:</strong> <a href="mailto:contact@quicktokengen.dev" style="color: #38bdf8; text-decoration: none;">contact@quicktokengen.dev</a></li>
+        </ul>
     </div>
 
     <script>
@@ -58,7 +71,7 @@
             const subject = document.getElementById('contact-subject').value;
             const body = document.getElementById('contact-message').value;
 
-            const mailtoUrl = `mailto:contact@quicktokengen.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Hi, my name is " + name + ".\n\n" + body)}`;
+            const mailtoUrl = `mailto:contact@quicktokengen.dev?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("Hi QuickTokenGen Team,\n\nMy name is " + name + ".\n\n" + body)}`;
             window.location.href = mailtoUrl;
         }
     </script>
