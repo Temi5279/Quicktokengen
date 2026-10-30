@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's New & Changelog | QuickTokenGen</title>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EG0381S98K');
+      
+        // Track PWA Installs
+        window.addEventListener('appinstalled', () => {
+            if (typeof gtag === 'function') {
+                gtag('event', 'pwa_install', {
+                    event_category: 'PWA',
+                    event_label: 'QuickTokenGen Installed'
+                });
+            }
+        });
+    </script>
+
+    <meta name="description" content="Discover the latest updates, feature releases, and improvements to QuickTokenGen utility tools.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="manifest" href="../manifest.json">
+    <style>
+        .changelog-container { max-width: 750px; margin: 40px auto; padding: 0 20px; text-align: left; }
+        .release-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .release-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #334155; padding-bottom: 12px; margin-bottom: 15px; flex-wrap: wrap; gap: 10px; }
+        .release-version { font-size: 1.25rem; font-weight: bold; color: #38bdf8; }
+        .release-date { font-size: 0.85rem; color: #94a3b8; background: #0f172a; padding: 4px 10px; border-radius: 6px; border: 1px solid #334155; }
+        .release-list { list-style-type: disc; padding-left: 20px; color: #cbd5e1; line-height: 1.6; }
+        .release-list li { margin-bottom: 8px; }
+        .badge-new { background: #22c55e; color: #fff; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; vertical-align: middle; margin-left: 8px; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../" class="nav-link">Password</a>
+        <a href="../qr-code/" class="nav-link">QR Code</a>
+        <a href="../text-repeater/" class="nav-link">Repeater</a>
+        <a href="../base64/" class="nav-link">Base64</a>
+    </nav>
+
+    <div class="changelog-container">
+        <h1 style="text-align: center; margin-bottom: 10px; color: #f8fafc;">What's New in QuickTokenGen</h1>
+        <p style="text-align: center; color: #94a3b8; margin-bottom: 35px;">Check out our latest releases, improvements, and feature updates.</p>
+
+        <!-- v1.2 Release -->
+        <div class="release-card">
+            <div class="release-header">
+                <span class="release-version">Version 1.2 <span class="badge-new">LATEST</span></span>
+                <span class="release-date">October 30, 2026</span>
+            </div>
+            <ul class="release-list">
+                <li><strong>Advanced QR Code Hub Upgrades:</strong> Added a brand-new QR Scanner and Reader tab directly into the QR Code page.</li>
+                <li><strong>Live Camera Stream Scanning:</strong> Users can now scan QR codes directly using their mobile or desktop camera with automatic redirect triggers for links.</li>
+                <li><strong>Screenshot & Image File Uploads:</strong> Added client-side decoding allowing users to upload or drag-and-drop QR image files to extract text or URLs instantly.</li>
+            </ul>
+        </div>
+
+        <!-- v1.1 Release -->
+        <div class="release-card">
+            <div class="release-header">
+                <span class="release-version">Version 1.1</span>
+                <span class="release-date">October 15, 2026</span>
+            </div>
+            <ul class="release-list">
+                <li><strong>Text Repeater Tool:</strong> Launched a dedicated tool to quickly duplicate text sequences with custom separators and delimiters.</li>
+                <li><strong>Base64 Encoder & Decoder:</strong> Added developer-focused encoding and decoding utilities with fast clipboard copy workflows.</li>
+                <li><strong>Performance & SEO Optimization:</strong> Enhanced page load speeds and updated metadata indexing across all tool suites.</li>
+            </ul>
+        </div>
+
+        <!-- v1.0 Release -->
+        <div class="release-card">
+            <div class="release-header">
+                <span class="release-version">Version 1.0 (Initial Launch)</span>
+                <span class="release-date">October 29, 2026</span>
+            </div>
+            <ul class="release-list">
+                <li><strong>Official Platform Release:</strong> Initial deployment of QuickTokenGen Pro.</li>
+                <li><strong>Password Generator:</strong> High-entropy cryptographic password generator with customizable symbol and length constraints.</li>
+                <li><strong>Dynamic QR Code Generation:</strong> Instant PNG QR code matrix rendering powered by cloud APIs.</li>
+                <li><strong>PWA Support:</strong> Progressive Web App capability allowing users to install the tool directly to their devices.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ADSTERRA BANNER SLOT 1 -->
+    <div style="text-align: center; margin: 25px 0;">
+        <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Sponsored Advertisement</div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'f768a536f57ebf9f73b1bb8dd6e3d49c',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://bauval.org/22/f768a536f57ebf9f73b1bb8dd6e3d49c"></script>
+    </div>
+
+<footer style="margin-top: auto; padding: 25px 10px; text-align: center; border-top: 1px solid #334155; width: 100%; max-width: 750px; margin-left: auto; margin-right: auto;">
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+        <a href="../privacy/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+        <a href="../terms/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+        <a href="../cookies/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+        <a href="../help/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Help Center</a>
+        <a href="../contact/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Contact Us</a>
+        <a href="../donate/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Donate</a>
+    </div>
+    <p style="color: #64748b; font-size: 0.8rem; margin: 0;">© 2026 QuickTokenGen Pro. All rights reserved.</p>
+</footer>
+</body>
+</html>
