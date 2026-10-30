@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Dynamic QR Code Generator | QuickTokenGen</title>
+    <title>Free Dynamic QR Code Generator & Scanner | QuickTokenGen</title>
 
 <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
@@ -24,10 +24,23 @@
   });
 </script>
 
-    <meta name="description" content="Generate high-resolution PNG QR codes instantly for URLs, plain text, and Wi-Fi networks. Free online QR matrix generator with fast downloads.">
+    <meta name="description" content="Generate high-resolution PNG QR codes or scan QR codes instantly from images and live camera. Free online QR matrix toolkit with fast performance.">
     <link rel="stylesheet" href="../style.css">
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <link rel="manifest" href="../manifest.json">
+    <!-- Include jsQR library for lightning-fast client-side scanning -->
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <style>
+        .qr-tabs { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
+        .tab-btn { flex: 1; padding: 10px; background: #1e293b; color: #94a3b8; border: 1px solid #334155; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; }
+        .tab-btn.active { background: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .upload-box { display: block; border: 2px dashed #475569; padding: 25px; border-radius: 12px; text-align: center; cursor: pointer; color: #94a3b8; margin-bottom: 15px; transition: 0.2s; }
+        .upload-box:hover { border-color: #38bdf8; color: #38bdf8; }
+        #scanner-video { width: 100%; max-height: 250px; object-fit: cover; border-radius: 12px; display: none; margin-bottom: 15px; background: #000; }
+        .scan-result-box { background: #1e293b; border: 1px solid #334155; padding: 15px; border-radius: 12px; margin-top: 15px; word-break: break-all; text-align: left; }
+    </style>
 </head>
 <body>
 
@@ -39,18 +52,58 @@
     </nav>
 
     <div class="container">
-        <h1>Free Online QR Code Generator</h1>
-        <input type="text" id="qr-input" placeholder="Type text or paste URL here...">
-        <button class="action-btn" onclick="generateQRCode()">Create QR Code</button>
-        
-        <div id="qr-display-area" style="text-align: center; margin-top: 20px;">
-            <img id="qr-image-result" src="" alt="QR Code Output" style="display: none; background-color: white; padding: 15px; border-radius: 12px; margin: 0 auto 20px auto; width: 200px; height: 200px;">
-            <div id="qr-actions" style="display:none;">
-                <button class="action-btn" style="background-color:#22c55e; color: white;" onclick="downloadQR()">Download QR (PNG)</button>
+        <h1>QR Code Hub</h1>
+
+        <!-- TAB SWITCHER -->
+        <div class="qr-tabs">
+            <button id="btn-tab-gen" class="tab-btn active" onclick="switchTab('gen')">Generate QR</button>
+            <button id="btn-tab-scan" class="tab-btn" onclick="switchTab('scan')">Scan / Read QR</button>
+        </div>
+
+        <!-- TAB 1: GENERATOR -->
+        <div id="content-gen" class="tab-content active">
+            <input type="text" id="qr-input" placeholder="Type text or paste URL here...">
+            <button class="action-btn" onclick="generateQRCode()">Create QR Code</button>
+            
+            <div id="qr-display-area" style="text-align: center; margin-top: 20px;">
+                <img id="qr-image-result" src="" alt="QR Code Output" style="display: none; background-color: white; padding: 15px; border-radius: 12px; margin: 0 auto 20px auto; width: 200px; height: 200px;">
+                <div id="qr-actions" style="display:none;">
+                    <button class="action-btn" style="background-color:#22c55e; color: white;" onclick="downloadQR()">Download QR (PNG)</button>
+                </div>
+            </div>
+            
+            <div id="qr-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your dynamic QR code will render here...</div>
+        </div>
+
+        <!-- TAB 2: SCANNER / READER -->
+        <div id="content-scan" class="tab-content">
+            <!-- Option A: File / Screenshot Upload -->
+            <label class="upload-box">
+                📁 Tap to Upload QR Screenshot or Image
+                <input type="file" id="qr-file-input" accept="image/*" style="display: none;" onchange="scanQRCodeFromFile(event)">
+            </label>
+
+            <div style="text-align: center; margin: 15px 0; color: #64748b; font-size: 0.9rem;">— OR USE LIVE CAMERA —</div>
+
+            <!-- Option B: Live Camera Scanner -->
+            <button class="action-btn" id="cam-toggle-btn" style="background-color: #0284c7;" onclick="toggleCameraScanner()">Start Camera Scanner</button>
+            
+            <video id="scanner-video" playsinline></video>
+            <canvas id="scanner-canvas" style="display: none;"></canvas>
+
+            <!-- Scan Output Result -->
+            <div id="scan-result-container" style="display: none;">
+                <div class="scan-result-box">
+                    <div style="font-size: 0.8rem; color: #38bdf8; margin-bottom: 5px; font-weight: bold;">SCANNED RESULT:</div>
+                    <p id="scanned-text-output" style="margin: 0 0 10px 0; color: #f8fafc;"></p>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="action-btn" style="padding: 6px 12px; font-size: 0.85rem;" onclick="copyScannedText()">Copy Text</button>
+                        <a id="scanned-link-btn" href="#" target="_blank" class="action-btn" style="padding: 6px 12px; font-size: 0.85rem; background-color: #22c55e; text-decoration: none; display: none;">Open Link</a>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div id="qr-placeholder" style="color: #64748b; font-style: italic; margin-top: 15px;">Your dynamic QR code will render here...</div>
+
     </div>
 
     <!-- ADSTERRA BANNER SLOT 1 -->
@@ -69,8 +122,8 @@
     </div>
 
     <div class="seo-section">
-        <h2>Instant Dynamic QR Code Creator for Modern Links</h2>
-        <p>Quick Response (QR) matrices bridge physical media and digital web destinations. QuickTokenGen provides a fast, free QR code creation engine allowing users to convert long website URLs, contact credentials, Wi-Fi networks, and text snippets into scannable 2D barcode graphics.</p>
+        <h2>Instant Dynamic QR Code Creator & Reader for Modern Links</h2>
+        <p>Quick Response (QR) matrices bridge physical media and digital web destinations. QuickTokenGen provides a fast, free QR code creation and scanning engine allowing users to convert links or decode QR screenshots instantly right in the browser.</p>
 
         <h2>Common Use Cases for Custom QR Codes</h2>
         <ul>
@@ -81,6 +134,24 @@
     </div>
 
     <script>
+        // Tab Switcher Logic
+        function switchTab(tab) {
+            stopCameraScanner(); // Stop camera if switching away
+            document.getElementById('content-gen').classList.remove('active');
+            document.getElementById('content-scan').classList.remove('active');
+            document.getElementById('btn-tab-gen').classList.remove('active');
+            document.getElementById('btn-tab-scan').classList.remove('active');
+
+            if (tab === 'gen') {
+                document.getElementById('content-gen').classList.add('active');
+                document.getElementById('btn-tab-gen').classList.add('active');
+            } else {
+                document.getElementById('content-scan').classList.add('active');
+                document.getElementById('btn-tab-scan').classList.add('active');
+            }
+        }
+
+        // --- GENERATOR LOGIC ---
         function generateQRCode() {
             const inputData = document.getElementById('qr-input').value;
             const qrImg = document.getElementById('qr-image-result');
@@ -122,6 +193,129 @@
                     setTimeout(() => downloadBtn.innerText = "Download QR (PNG)", 2000);
                 })
                 .catch(() => alert("Download failed. Long-press image to save!"));
+        }
+
+        // --- SCANNER / READER LOGIC ---
+        function displayScanResult(text) {
+            const container = document.getElementById('scan-result-container');
+            const output = document.getElementById('scanned-text-output');
+            const linkBtn = document.getElementById('scanned-link-btn');
+
+            output.innerText = text;
+            container.style.display = 'block';
+
+            // Check if result is a valid URL
+            if (text.startsWith('http://') || text.startsWith('https://') || text.startsWith('www.')) {
+                let validUrl = text.startsWith('www.') ? 'https://' + text : text;
+                linkBtn.href = validUrl;
+                linkBtn.style.display = 'inline-block';
+            } else {
+                linkBtn.style.display = 'none';
+            }
+        }
+
+        function copyScannedText() {
+            const text = document.getElementById('scanned-text-output').innerText;
+            navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard!"));
+        }
+
+        // 1. Scan from uploaded image file/screenshot
+        function scanQRCodeFromFile(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const canvasCtx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    canvasCtx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const imgData = canvasCtx.getImageData(0, 0, canvas.width, canvas.height);
+                    const code = jsQR(imgData.data, imgData.width, imgData.height);
+
+                    if (code) {
+                        displayScanResult(code.data);
+                    } else {
+                        alert("No QR code found in this image. Try another screenshot!");
+                    }
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 2. Live Camera Scanner Stream
+        let videoStream = null;
+        let scanningActive = false;
+
+        function toggleCameraScanner() {
+            if (scanningActive) {
+                stopCameraScanner();
+            } else {
+                startCameraScanner();
+            }
+        }
+
+        function startCameraScanner() {
+            const videoElement = document.getElementById('scanner-video');
+            const camBtn = document.getElementById('cam-toggle-btn');
+
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+                .then(stream => {
+                    videoStream = stream;
+                    videoElement.srcObject = stream;
+                    videoElement.style.display = 'block';
+                    videoElement.play();
+                    scanningActive = true;
+                    camBtn.innerText = "Stop Camera";
+                    camBtn.style.backgroundColor = "#dc2626";
+                    requestAnimationFrame(tickCameraScan);
+                })
+                .catch(err => {
+                    alert("Camera access denied or unavailable.");
+                });
+        }
+
+        function stopCameraScanner() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                videoStream = null;
+            }
+            scanningActive = false;
+            const videoElement = document.getElementById('scanner-video');
+            const camBtn = document.getElementById('cam-toggle-btn');
+            if (videoElement) videoElement.style.display = 'none';
+            if (camBtn) {
+                camBtn.innerText = "Start Camera Scanner";
+                camBtn.style.backgroundColor = "#0284c7";
+            }
+        }
+
+        function tickCameraScan() {
+            if (!scanningActive) return;
+            const videoElement = document.getElementById('scanner-video');
+            const canvas = document.getElementById('scanner-canvas');
+
+            if (videoElement.readyState === videoElement.HAVE_ENOUGH_DATA) {
+                canvas.width = videoElement.videoWidth;
+                canvas.height = videoElement.videoHeight;
+                const canvasCtx = canvas.getContext('2d');
+                canvasCtx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+                
+                const imgData = canvasCtx.getImageData(0, 0, canvas.width, canvas.height);
+                const code = jsQR(imgData.data, imgData.width, imgData.height);
+
+                if (code) {
+                    displayScanResult(code.data);
+                    stopCameraScanner(); // Stop camera once successfully scanned
+                    return;
+                }
+            }
+            requestAnimationFrame(tickCameraScan);
         }
     </script>
 
