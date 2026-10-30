@@ -12,7 +12,17 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-EG0381S98K');
-  </script>
+  
+  // Track PWA Installs
+  window.addEventListener('appinstalled', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'pwa_install', {
+        event_category: 'PWA',
+        event_label: 'QuickTokenGen Installed'
+      });
+    }
+  });
+</script>
 
     <meta name="description" content="Read the privacy policy of QuickTokenGen. Learn how we protect your data with secure, 100% client-side execution and zero logging.">
     <link rel="stylesheet" href="../style.css">
