@@ -12,7 +12,17 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-EG0381S98K');
-  </script>
+  
+  // Track PWA Installs
+  window.addEventListener('appinstalled', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'pwa_install', {
+        event_category: 'PWA',
+        event_label: 'QuickTokenGen Installed'
+      });
+    }
+  });
+</script>
 
     <meta name="description" content="Convert plain text strings into Base64 or decode Base64 data strings back to human-readable format instantly in your browser.">
     <link rel="stylesheet" href="../style.css">
