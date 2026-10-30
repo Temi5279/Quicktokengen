@@ -14,6 +14,17 @@
     gtag('config', 'G-EG0381S98K');
   </script>
 
+// Track PWA Installs
+  window.addEventListener('appinstalled', () => {
+    if (typeof gtag === 'function') {
+      gtag('event', 'pwa_install', {
+        event_category: 'PWA',
+        event_label: 'QuickTokenGen Installed'
+      });
+    }
+  });
+</script>
+
     <meta name="description" content="Generate high-entropy secure random passwords with live strength checks and estimated crack time calculations. Free, zero-logging client-side developer utility.">
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
