@@ -198,3 +198,113 @@ label {
 .seo-section li {
     margin-bottom: 8px;
 }
+
+/* ==========================================
+   DROPDOWN & TOOL UTILITY ENHANCEMENTS
+   ========================================== */
+
+/* Navbar Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1e293b;
+    min-width: 210px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 8px 0;
+    z-index: 1000;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    color: #94a3b8;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover, .dropdown-item.active {
+    background-color: #0f172a;
+    color: #38bdf8;
+}
+
+/* Badges */
+.badge-soon {
+    background-color: #0284c7;
+    color: #ffffff;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.badge-live {
+    background-color: #22c55e;
+    color: #0f172a;
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Tool Form Controls */
+.form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group {
+    flex: 1;
+    text-align: left;
+}
+
+select {
+    width: 100%;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #f8fafc;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-bottom: 18px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
