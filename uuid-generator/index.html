@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID v4 Generator | QuickTokenGen Pro</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EG0381S98K');
+  </script>
+
+    <meta name="description" content="Generate cryptographically secure version-4 UUIDs (Universally Unique Identifiers) instantly in your browser. Free client-side developer utility.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../" class="nav-link">Password</a>
+        <a href="../qr-code/" class="nav-link">QR Code</a>
+        <a href="../text-repeater/" class="nav-link">Repeater</a>
+        <a href="../base64/" class="nav-link">Base64</a>
+
+        <div class="dropdown">
+            <button class="nav-link dropdown-btn active">
+                More Tools <span style="font-size: 0.7rem;">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <a href="../uuid-generator/" style="color: #38bdf8;">UUID Generator (v4)</a>
+                <a href="../json-formatter/">JSON Formatter</a>
+                <a href="../coming-soon/">URL Encoder <span class="badge-soon">Soon</span></a>
+                <a href="../coming-soon/">Lorem Ipsum <span class="badge-soon">Soon</span></a>
+                <a href="../coming-soon/">Unix Timestamp <span class="badge-soon">Soon</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>UUID Generator (v4)</h1>
+        
+        <label for="uuid-quantity">Quantity (1 to 50):</label>
+        <input type="number" id="uuid-quantity" min="1" max="50" value="1">
+        
+        <button class="action-btn" onclick="generateUUIDs()">Generate UUIDs</button>
+
+        <div id="uuid-wrapper" style="display: none; margin-top: 20px; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label style="margin-bottom:0;">Generated Result:</label>
+                <button class="copy-btn" id="uuid-copy-btn" onclick="copyUUIDs()">Copy All</button>
+            </div>
+            <textarea id="uuid-output" rows="6" readonly style="font-family: 'Courier New', Courier, monospace; line-height: 1.5;"></textarea>
+        </div>
+        
+        <div id="uuid-placeholder" style="color: #64748b; font-style: italic; margin-top: 20px;">Your generated UUIDs will appear here...</div>
+    </div>
+
+    <!-- ADSTERRA BANNER SLOT 1 -->
+    <div style="text-align: center; margin: 25px 0;">
+        <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Sponsored Advertisement</div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'f768a536f57ebf9f73b1bb8dd6e3d49c',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://bauval.org/22/f768a536f57ebf9f73b1bb8dd6e3d49c"></script>
+    </div>
+
+    <div class="seo-section">
+        <h2>Cryptographically Secure UUID v4 Generator</h2>
+        <p>UUID (Universally Unique Identifier) version 4 is a standard 128-bit identifier format generated using random or pseudo-random numbers. It provides virtually zero collision probability, making it the industry standard for database primary keys, session IDs, and software API tokens.</p>
+
+        <h2>Client-Side Cryptographic Entropy</h2>
+        <p>Our online UUID generator leverages your browser’s native <code>crypto.getRandomValues()</code> API, ensuring that every identifier generated meets strict cryptographic entropy standards without sending data to an external server.</p>
+    </div>
+
+    <script>
+        function generateSingleUUID() {
+            return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+                (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+            );
+        }
+
+        function generateUUIDs() {
+            const qtyInput = document.getElementById('uuid-quantity');
+            const outputTextarea = document.getElementById('uuid-output');
+            const wrapper = document.getElementById('uuid-wrapper');
+            const placeholder = document.getElementById('uuid-placeholder');
+
+            let qty = parseInt(qtyInput.value);
+            if (isNaN(qty) || qty < 1) qty = 1;
+            if (qty > 50) qty = 50;
+            qtyInput.value = qty;
+
+            let results = [];
+            for (let i = 0; i < qty; i++) {
+                results.push(generateSingleUUID());
+            }
+
+            outputTextarea.value = results.join('\n');
+            placeholder.style.display = 'none';
+            wrapper.style.display = 'block';
+        }
+
+        function copyUUIDs() {
+            const text = document.getElementById('uuid-output').value;
+            const btn = document.getElementById('uuid-copy-btn');
+            if(!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = "✓ Copied";
+                btn.style.backgroundColor = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy All"; btn.style.backgroundColor = ""; }, 1500);
+            });
+        }
+    </script>
+
+    <footer style="margin-top: auto; padding: 25px 10px; text-align: center; border-top: 1px solid #334155; width: 100%; max-width: 750px;">
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+            <a href="../privacy/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+            <a href="../terms/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            <a href="../cookies/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+            <a href="../help/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Help Center</a>
+            <a href="../contact/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Contact Us</a>
+        </div>
+        <p style="color: #64748b; font-size: 0.8rem; margin: 0;">© 2026 QuickTokenGen Pro. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
