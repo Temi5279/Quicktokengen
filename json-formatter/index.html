@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator | QuickTokenGen Pro</title>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG0381S98K"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EG0381S98K');
+  </script>
+
+    <meta name="description" content="Validate, auto-indent, and format raw JSON payloads instantly in your browser. Clean, zero-logging client-side JSON tool for developers.">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="../" class="nav-link">Password</a>
+        <a href="../qr-code/" class="nav-link">QR Code</a>
+        <a href="../text-repeater/" class="nav-link">Repeater</a>
+        <a href="../base64/" class="nav-link">Base64</a>
+
+        <div class="dropdown">
+            <button class="nav-link dropdown-btn active">
+                More Tools <span style="font-size: 0.7rem;">▼</span>
+            </button>
+            <div class="dropdown-content">
+                <a href="../uuid-generator/">UUID Generator (v4)</a>
+                <a href="../json-formatter/" style="color: #38bdf8;">JSON Formatter</a>
+                <a href="../coming-soon/">URL Encoder <span class="badge-soon">Soon</span></a>
+                <a href="../coming-soon/">Lorem Ipsum <span class="badge-soon">Soon</span></a>
+                <a href="../coming-soon/">Unix Timestamp <span class="badge-soon">Soon</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>JSON Formatter & Validator</h1>
+        
+        <label for="json-input">Paste Raw JSON Code:</label>
+        <textarea id="json-input" rows="6" placeholder='{"name":"Temi","status":"active"}' style="font-family: 'Courier New', Courier, monospace;"></textarea>
+        
+        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <button class="action-btn" onclick="formatJSON(2)">Format (2 Spaces)</button>
+            <button class="action-btn" onclick="minifyJSON()" style="background-color: #334155; color: #f8fafc;">Minify</button>
+        </div>
+
+        <div id="json-status" style="display: none; padding: 10px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; margin-bottom: 15px; text-align: left;"></div>
+
+        <div id="json-wrapper" style="display: none; text-align: left;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <label style="margin-bottom:0;">Formatted JSON:</label>
+                <button class="copy-btn" id="json-copy-btn" onclick="copyJSON()">Copy</button>
+            </div>
+            <textarea id="json-output" rows="8" readonly style="font-family: 'Courier New', Courier, monospace; line-height: 1.4;"></textarea>
+        </div>
+    </div>
+
+    <!-- ADSTERRA BANNER SLOT 1 -->
+    <div style="text-align: center; margin: 25px 0;">
+        <div style="color: #64748b; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Sponsored Advertisement</div>
+        <script type="text/javascript">
+            atOptions = {
+                'key' : 'f768a536f57ebf9f73b1bb8dd6e3d49c',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+            };
+        </script>
+        <script type="text/javascript" src="https://bauval.org/22/f768a536f57ebf9f73b1bb8dd6e3d49c"></script>
+    </div>
+
+    <div class="seo-section">
+        <h2>Client-Side JSON Formatter & Debugger</h2>
+        <p>Working with API responses, Firebase databases, or config files often leaves you with unformatted JSON. Our tool quickly validates syntax, highlights structural errors, and beautifies code instantly.</p>
+    </div>
+
+    <script>
+        function formatJSON(indent) {
+            const inputArea = document.getElementById('json-input').value.trim();
+            const statusDiv = document.getElementById('json-status');
+            const wrapper = document.getElementById('json-wrapper');
+            const outputArea = document.getElementById('json-output');
+
+            if (!inputArea) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                statusDiv.style.color = '#ef4444';
+                statusDiv.innerText = '❌ Please enter JSON code to format.';
+                wrapper.style.display = 'none';
+                return;
+            }
+
+            try {
+                const parsed = JSON.parse(inputArea);
+                outputArea.value = JSON.stringify(parsed, null, indent);
+                
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+                statusDiv.style.color = '#22c55e';
+                statusDiv.innerText = '✓ Valid JSON Payload';
+                
+                wrapper.style.display = 'block';
+            } catch (err) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                statusDiv.style.color = '#ef4444';
+                statusDiv.innerText = '❌ Invalid JSON: ' + err.message;
+                wrapper.style.display = 'none';
+            }
+        }
+
+        function minifyJSON() {
+            const inputArea = document.getElementById('json-input').value.trim();
+            const statusDiv = document.getElementById('json-status');
+            const wrapper = document.getElementById('json-wrapper');
+            const outputArea = document.getElementById('json-output');
+
+            if (!inputArea) return;
+
+            try {
+                const parsed = JSON.parse(inputArea);
+                outputArea.value = JSON.stringify(parsed);
+                
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(34, 197, 94, 0.15)';
+                statusDiv.style.color = '#22c55e';
+                statusDiv.innerText = '✓ Valid JSON Minified';
+                
+                wrapper.style.display = 'block';
+            } catch (err) {
+                statusDiv.style.display = 'block';
+                statusDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+                statusDiv.style.color = '#ef4444';
+                statusDiv.innerText = '❌ Invalid JSON: ' + err.message;
+                wrapper.style.display = 'none';
+            }
+        }
+
+        function copyJSON() {
+            const text = document.getElementById('json-output').value;
+            const btn = document.getElementById('json-copy-btn');
+            if(!text) return;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.innerText = "✓ Copied";
+                btn.style.backgroundColor = "#22c55e";
+                setTimeout(() => { btn.innerText = "Copy"; btn.style.backgroundColor = ""; }, 1500);
+            });
+        }
+    </script>
+
+    <footer style="margin-top: auto; padding: 25px 10px; text-align: center; border-top: 1px solid #334155; width: 100%; max-width: 750px;">
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+            <a href="../privacy/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Privacy Policy</a>
+            <a href="../terms/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Terms of Service</a>
+            <a href="../cookies/" style="color: #94a3b8; text-decoration: none; font-size: 0.85rem;">Cookie Policy</a>
+            <a href="../help/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Help Center</a>
+            <a href="../contact/" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem;">Contact Us</a>
+        </div>
+        <p style="color: #64748b; font-size: 0.8rem; margin: 0;">© 2026 QuickTokenGen Pro. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
